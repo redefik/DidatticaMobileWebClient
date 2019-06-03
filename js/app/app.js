@@ -1,0 +1,1 @@
+angular.module('didatticaMobileWebClient', ['ngRoute', 'angular-jwt']);

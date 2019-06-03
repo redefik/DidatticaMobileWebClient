@@ -1,0 +1,35 @@
+<!--Here information about a specific course are shown and a form to upload teaching materials is provided-->
+<div class="container-fluid">
+    <h1>{{course.name}}</h1>
+    <p><strong>Dipartimento: </strong>{{course.department}}</p>
+    <p><strong>Anno Accademico: </strong>{{course.year}}</p>
+    <p><strong>Semestre: </strong>{{course.semester}}</p>
+    <h2>Descrizione</h2>
+    <p>{{course.description}}</p>
+    <h2>Orario delle lezioni</h2>
+    <ul>
+        <li ng-repeat="scheduleItem in course.schedule">
+            <strong>Giorno: </strong>{{scheduleItem.day}} <strong>Ora: </strong>{{scheduleItem.startTime}}-{{scheduleItem.endTime}} <strong>Aula: </strong>{{scheduleItem.room}}</li>
+    </ul>
+    <h2>Materiale Didattico</h2>
+    <div class="alert alert-danger" ng-show="errorOccurred">{{errorMessage}}</div>
+    <span class="spinner-border spinner-border-sm" ng-show="loading"></span>
+    <ul ng-hide="errorOccurred">
+        <li ng-repeat="material in teachingMaterials"><a href="" ng-click="downloadTeachingMaterial(material)">{{material.split("_")[1]}}</a></li><!-- Each material is showed in a human-readable form-->
+    </ul>
+    <form name="teachingMaterialUploadForm">
+    <h3>Carica nuovo materiale</h3>
+    <input type="file" id="inputFile" accept="application/pdf" name="inputFile">
+    <br>
+    <br>
+    <div class="form-group">
+    <button class="btn btn-primary" ng-click="uploadTeachingMaterial()">Carica
+        <span class="spinner-border spinner-border-sm" ng-show="uploading"></span></button>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" ng-show="uploadingErrorOccurred">
+        <!--&times is the 'X' symbol-->
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{uploadingErrorMessage}}
+    </div>
+    </form>
+</div>

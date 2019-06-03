@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Didattica Mobile</title>
+    <!--AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <!--Bootstrap (for rendering)-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--For optimal rendering on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Angular JS ng-route-->
+    <script src="lib/angular-route.js"></script>
+    <!--Angular JS angular-jwt-->
+    <script src="lib/angular-jwt.min.js"></script>
+
+    <!--JavaScript files-->
+    <script src="js/app/app.js"></script>
+    <script src="js/config/config.js"></script>
+    <script src="js/controller/loginController.js"></script>
+    <script src="js/service/userService.js"></script>
+    <script src="js/controller/homeController.js"></script>
+    <script src="js/service/courseService.js"></script>
+    <script src="js/controller/courseDetailController.js"></script>
+    <script src="js/service/teachingMaterialService.js"></script>
+    <script src="js/config/parameters.js"></script>
+    <script src="js/error/customError.js"></script>
+</head>
+<body ng-app="didatticaMobileWebClient">
+<!--include page header-->
+<div ng-include="'html/pageHeader.html'"></div>
+<!--dynamic content-->
+<div ng-view></div>
+</body>
+</html>

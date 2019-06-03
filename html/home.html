@@ -1,0 +1,8 @@
+<!--Here, the courses of the logged teacher are shown-->
+<div class="container">
+    <h3>I tuoi corsi</h3><span class="spinner-border spinner-border-sm" ng-show="loading"></span>
+    <div class="alert alert-danger" ng-show="errorOccurred">{{errorMessage}}</div>
+    <ul>
+        <li ng-repeat="course in courses"><a href="" ng-click="goToCourseDetail(course)">{{course.name}} {{course.year}}</a></li>
+    </ul>
+</div>
