@@ -13,23 +13,28 @@
     </ul>
     <h2>Materiale Didattico</h2>
     <div class="alert alert-danger" ng-show="errorOccurred">{{errorMessage}}</div>
-    <span class="spinner-border spinner-border-sm" ng-show="loading"></span>
+    <span class="spinner-border spinner-border-sm" ng-show="loading || downloading"></span>
     <ul ng-hide="errorOccurred">
         <li ng-repeat="material in teachingMaterials"><a href="" ng-click="downloadTeachingMaterial(material)">{{material.split("_")[1]}}</a></li><!-- Each material is showed in a human-readable form-->
     </ul>
+    <div class="alert alert-danger alert-dismissible fade show" ng-show="downloadingErrorOccurred">
+        <!--&times is the 'X' symbol-->
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{downloadingErrorMessage}}
+    </div>
     <form name="teachingMaterialUploadForm">
     <h3>Carica nuovo materiale</h3>
     <input type="file" id="inputFile" accept="application/pdf" name="inputFile">
     <br>
     <br>
     <div class="form-group">
+        <div class="alert alert-danger alert-dismissible fade show" ng-show="uploadingErrorOccurred">
+            <!--&times is the 'X' symbol-->
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{uploadingErrorMessage}}
+        </div>
     <button class="btn btn-primary" ng-click="uploadTeachingMaterial()">Carica
         <span class="spinner-border spinner-border-sm" ng-show="uploading"></span></button>
-    </div>
-    <div class="alert alert-danger alert-dismissible fade show" ng-show="uploadingErrorOccurred">
-        <!--&times is the 'X' symbol-->
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{uploadingErrorMessage}}
     </div>
     </form>
 </div>

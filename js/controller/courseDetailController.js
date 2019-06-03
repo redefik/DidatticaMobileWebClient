@@ -5,6 +5,8 @@ angular.module('didatticaMobileWebClient').controller('courseDetailController',
     $scope.errorOccurred = false;
     $scope.uploadingErrorOccurred = false;
     $scope.uploadingErrorMessage = "";
+    $scope.downloadingErrorOccurred = false;
+    $scope.downloadingErrorMessage = "";
     // Initialize the course detail page downloading the teaching materials for the course
     let initializeTeachingMaterialsList = function (courseId) {
         $scope.loading = true;
@@ -39,13 +41,13 @@ angular.module('didatticaMobileWebClient').controller('courseDetailController',
                $route.reload();
             }, function errorCallback(error) {
                 // On failure an error message is shown
-                $scope.errorOccurred = true;
+                $scope.uploadingErrorOccurred = true;
                 if (error instanceof InternalErrorException) {
-                    $scope.errorMessage = INTERNAL_ERROR_MESSAGE;
+                    $scope.uploadingErrorMessage = INTERNAL_ERROR_MESSAGE;
                 } else if (error instanceof ConflictFileException) {
-                    $scope.errorMessage = CONFLICT_FILE_ERROR_MESSAGE;
+                    $scope.uploadingErrorMessage = CONFLICT_FILE_ERROR_MESSAGE;
                 } else {
-                    $scope.errorMessage = UNKNOWN_ERROR_MESSAGE;
+                    $scope.uploadingErrorMessage = UNKNOWN_ERROR_MESSAGE;
                 }
             })
             .finally(function () {
@@ -55,18 +57,22 @@ angular.module('didatticaMobileWebClient').controller('courseDetailController',
 
     // Download the teaching material clicked by the user
     $scope.downloadTeachingMaterial = function(material) {
+        $scope.downloading = true;
         teachingMaterialService.downloadTeachingMaterial($scope.course, material.split("_")[1])
             .then(function successCallback(fileLink) {
                 // The file is opened in another window
                 $window.open(fileLink);
             }, function errorCallback(error){
                 // On failure, an error message is shown.
-                $scope.errorOccurred = true;
+                $scope.downloadingErrorOccurred = true;
                 if (error instanceof InternalErrorException) {
-                    $scope.errorMessage = INTERNAL_ERROR_MESSAGE;
+                    $scope.downloadingErrorMessage = INTERNAL_ERROR_MESSAGE;
                 } else {
-                    $scope.errorMessage = UNKNOWN_ERROR_MESSAGE;
+                    $scope.downloadingErrorMessage = UNKNOWN_ERROR_MESSAGE;
                 }
+            })
+            .finally(function (){
+                $scope.downloading = false;
             });
     };
 });
