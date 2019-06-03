@@ -4,8 +4,8 @@
 angular.module('didatticaMobileWebClient').config(function($routeProvider) {
     $routeProvider
     // The entry point is the login page
-        .when("/", {templateUrl: "/DidatticaMobileWebClient/html/login.html", controller: "loginController"})
-        .when("/home", {templateUrl: "/DidatticaMobileWebClient/html/home.html", controller: "homeController"})
-        .when("/courseDetail", {templateUrl: "/DidatticaMobileWebClient/html/courseDetail.html", controller: "courseDetailController"})
-        .otherwise({redirectTo: "/DidatticaMobileWebClient/html/login.html"})
+        .when("/", {templateUrl: "html/login.html", controller: "loginController"})
+        .when("/home", {templateUrl: "html/home.html", controller: "homeController"})
+        .when("/courseDetail", {templateUrl: "html/courseDetail.html", controller: "courseDetailController"})
+        .otherwise({redirectTo: "html/login.html"})
 });
